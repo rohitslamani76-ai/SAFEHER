@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SAFE'HER' — Team LEOARK</title>
+  <meta name="description" content="SAFE'HER' — women safety single-file demo: SOS calling saved contacts, Period Help broadcast to volunteers, volunteer network (demo), tips & resources. Ready for GitHub Pages." />
+  <style>
+    :root{--bg:#0b0f14;--card:#0f1720;--muted:#97a6b8;--accent:#ff6b81;--accent2:#00c48c;--glass:rgba(255,255,255,0.03);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#05060a 0%,#0b1220 100%);color:#e6f0ff}
+    a{color:var(--accent)}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(90deg,#071124 0%,#031223 100%);backdrop-filter:blur(4px);box-shadow:0 6px 24px rgba(0,0,0,0.6);position:sticky;top:0;z-index:1000}
+    .brand{display:flex;gap:12px;align-items:center}
+    main{max-width:1100px;margin:20px auto;padding:22px}
+    .grid{display:grid;grid-template-columns:1fr 380px;gap:22px}
+    @media(max-width:880px){.grid{grid-template-columns:1fr}header{padding:12px}main{padding:14px}}
+    .card{background:linear-gradient(180deg,var(--card),#0b1422);border-radius:12px;padding:16px;box-shadow:0 12px 40px rgba(2,8,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    h1{margin:0 0 10px;font-size:22px}
+    p.lead{margin:6px 0 16px;color:var(--muted)}
+    .controls{display:flex;gap:10px;flex-wrap:wrap}
+    button.btn{border:0;padding:12px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .btn-sos{background:linear-gradient(90deg,var(--accent),#ff3b67);color:#fff;box-shadow:0 12px 36px rgba(255,107,129,0.14)}
+    .btn-period{background:linear-gradient(90deg,#8e5bff,#5b9bff);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent);}
+    .muted{color:var(--muted);font-size:13px}
+    .small{font-size:13px}
+    .contacts{display:flex;flex-direction:column;gap:8px}
+    .contact-row{display:flex;align-items:center;justify-content:space-between;padding:10px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.02)}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:#e6f0ff}
+    footer{margin-top:18px;padding:14px;border-radius:10px;background:linear-gradient(90deg,#031523,#061226);display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .volunteers{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow:auto;padding-right:6px}
+    .vol{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;background:linear-gradient(90deg,rgba(255,255,255,0.02),transparent)}
+    .badge{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted)}
+    #modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:2000}
+    #modal .back{position:absolute;inset:0;background:rgba(2,6,12,0.7);backdrop-filter:blur(3px)}
+    #modal .panel{position:relative;max-width:720px;width:100%;padding:18px;border-radius:12px}
+    button:focus,input:focus,textarea:focus{outline:3px solid rgba(91,155,255,0.12);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ff6b81"/><path d="M7.8 10.5a4.2 4.2 0 018.4 0v3.9" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div>
+        <div style="font-weight:800;">SAFE'HER'</div>
+        <div style="font-size:12px;color:var(--muted)">Team LEOARK — rohit.s.lamani • prem.s.lamani • prajwal.k • sagar.chavan</div>
+      </div>
+    </div>
+    <nav style="display:flex;gap:10px;align-items:center">
+      <a href="#tips">Tips</a>
+      <a href="#resources">Resources</a>
+      <a href="#volunteers">Volunteers</a>
+      <a href="https://ncw.nic.in" target="_blank" rel="noopener">NCW</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section>
+        <div class="card">
+          <h1>SAFE'HER' — Empower & support women locally</h1>
+          <p class="lead">A presentation-ready single-file demo for webathons. Features: SOS (calls saved contacts), Period Help broadcast to volunteers, volunteer network demo (BroadcastChannel), quick safety tips and resources. Works on mobile browsers — ready for GitHub Pages.</p>
+
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <button id="sos" class="btn btn-sos">⚠️ SOS — Call First Contact</button>
+            <button id="periodHelp" class="btn btn-period">🩸 Period Help — Notify Nearby Volunteers</button>
+            <button id="notifyVols" class="btn btn-ghost">🔔 Broadcast Demo</button>
+            <button id="joinVols" class="btn btn-ghost">➕ Join as Volunteer (demo)</button>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <button id="shareDemo" class="btn btn-ghost">Share This Demo</button>
+            <button id="print" class="btn btn-ghost">Print / Save PDF</button>
+          </div>
+
+          <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:14px 0" />
+
+          <h3 style="margin:0 0 8px 0">Setup Emergency Contacts (up to 6)</h3>
+          <form id="addContactForm" class="inline" onsubmit="return false;" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input id="cname" placeholder="Label (e.g. Mom)" style="flex:1;min-width:140px"/>
+            <input id="cphone" placeholder="Phone (e.g. +9198xxxx)" inputmode="tel" style="flex:1;min-width:140px"/>
+            <button id="addContact" class="btn" style="background:var(--accent);color:#fff">Add</button>
+            <button id="clearAll" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">Clear All</button>
+          </form>
+
+          <div style="margin-top:12px">
+            <div class="muted">Saved emergency contacts (local to this browser)</div>
+            <div id="contacts" class="contacts" style="margin-top:8px"></div>
+          </div>
+
+          <div style="margin-top:16px" id="sosExtra" class="muted small">SOS will call the first saved contact immediately. You can call others individually. SMS composer to all contacts is prepared when SOS is used.</div>
+
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card" id="tips">
+          <h3 style="margin-top:0">Quick Safety Tips</h3>
+          <ul style="color:var(--muted);padding-left:18px">
+            <li>Share live location with a trusted contact when traveling alone.</li>
+            <li>Keep emergency numbers saved and labelled.</li>
+            <li>Use assertive voice, run to crowded places, and escape routes.</li>
+            <li>Carry whistle / pepper spray where legal, or use safety apps.</li>
+            <li>For period emergencies, ask volunteers or community help nearby.</li>
+          </ul>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card" id="resources">
+          <h3 style="margin-top:0">Resources & Helplines</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:10px">
+            <div style="flex:1 1 200px;padding:10px;border-radius:8px;background:linear-gradient(180deg,#081425,#071220);border:1px solid rgba(255,255,255,0.02)">
+              <strong>National Emergency</strong>
+              <div class="small muted">112 — Police, Ambulance & Fire</div>
+            </div>
+            <div style="flex:1 1 200px;padding:10px;border-radius:8px;background:linear-gradient(180deg,#081425,#071220);border:1px solid rgba(255,255,255,0.02)">
+              <strong>Women Helpline</strong>
+              <div class="small muted">181 — Immediate assistance & counseling</div>
+            </div>
+            <div style="flex:1 1 200px;padding:10px;border-radius:8px;background:linear-gradient(180deg,#081425,#071220);border:1px solid rgba(255,255,255,0.02)">
+              <strong>Useful Links</strong>
+              <div class="small muted"><a href="https://ncw.nic.in" target="_blank" rel="noopener">NCW</a> • <a href="https://wcd.nic.in" target="_blank" rel="noopener">WCD</a></div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <aside>
+        <div class="card" id="volunteers">
+          <h3 style="margin-top:0">Volunteers Network (demo)</h3>
+          <p class="small muted">This demo uses BroadcastChannel to simulate "nearby" volunteers across tabs. In production you'd use a backend + FCM / Apple Push Notifications.</p>
+          <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+            <input id="volName" placeholder="Volunteer name" style="flex:1" />
+            <button id="registerVol" class="btn btn-ghost">Register</button>
+          </div>
+
+          <div style="margin-top:12px">
+            <div class="muted small">Active volunteers (this browser):</div>
+            <div id="volList" class="volunteers"></div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div class="muted small">Demo controls</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button id="simulateNearby" class="btn btn-ghost">Simulate Nearby Volunteer</button>
+              <button id="clearVols" class="btn btn-ghost">Clear Volunteers</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <h3 style="margin-top:0">Quick Actions</h3>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <a id="call112" href="tel:112" class="btn btn-ghost" style="display:inline-block;text-align:left">Call 112 — Emergency</a>
+            <a id="call181" href="tel:181" class="btn btn-ghost" style="display:inline-block;text-align:left">Call 181 — Women Helpline</a>
+            <button id="getLoc" class="btn btn-ghost">Share My Location (demo)</button>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>
+      <div>© <span id="year"></span> SAFE'HER' • Team LEOARK</div>
+      <div class="muted">Single-file demo • Ready for GitHub Pages</div>
+    </footer>
+  </main>
+
+  <div id="modal" role="dialog" aria-hidden="true">
+    <div class="back"></div>
+    <div class="panel card">
+      <h3 id="modalTitle">Action</h3>
+      <pre id="modalBody" style="white-space:pre-wrap;background:transparent;border-radius:8px;padding:10px;color:var(--muted)">No details yet.</pre>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px"><button id="closeModal" class="btn btn-ghost">Close</button></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    const yearEl = document.getElementById('year'); yearEl.textContent = new Date().getFullYear();
+    const logEl = document.getElementById('modalBody'); function log(msg){ logEl.textContent = new Date().toLocaleTimeString() + ' — ' + msg; document.getElementById('modal').style.display='flex'; document.getElementById('modal').setAttribute('aria-hidden','false'); }
+
+    // Contacts
+    const contactsKey = 'safeher_contacts_v1';
+    function loadContacts(){ try{ return JSON.parse(localStorage.getItem(contactsKey))||[]; }catch(e){ return []; } }
+    function saveContacts(list){ localStorage.setItem(contactsKey, JSON.stringify(list)); }
+
+    function renderContacts(){ const root = document.getElementById('contacts'); root.innerHTML=''; const list = loadContacts(); if(list.length===0){ root.innerHTML = '<div class="muted">No contacts yet — add family / friends (saved locally)</div>'; return; }
+      list.forEach((c,i)=>{
+        const el = document.createElement('div'); el.className='contact-row'; el.innerHTML = `<div style="display:flex;gap:10px;align-items:center"><div><strong>${escapeHtml(c.label||('Contact '+(i+1)))}</strong><div class=\"small muted\">${escapeHtml(c.phone)}</div></div></div><div style=\"display:flex;gap:8px\"><a href=\"tel:${encodeURIComponent(c.phone)}\" class=\"btn btn-ghost\">Call</a><a href=\"sms:${encodeURIComponent(c.phone)}\" class=\"btn btn-ghost\">SMS</a><button class=\"btn\" data-idx=\"${i}\" style=\"background:rgba(255,255,255,0.02);color:var(--muted)\">Remove</button></div>`;
+        root.appendChild(el);
+      });
+    }
+
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[m]; }); }
+
+    renderContacts();
+
+    document.getElementById('addContact').addEventListener('click', function(){ const n=document.getElementById('cname').value.trim(); const p=document.getElementById('cphone').value.trim(); if(!p){ alert('Please enter a phone number'); return; } const list = loadContacts(); if(list.length>=6){ alert('Max 6 contacts allowed'); return; } list.push({label:n,phone:p}); saveContacts(list); renderContacts(); document.getElementById('cname').value=''; document.getElementById('cphone').value=''; log('Contact added: '+(n||p)); });
+
+    document.getElementById('contacts').addEventListener('click', function(e){ if(e.target.tagName==='BUTTON'){ const i=+e.target.getAttribute('data-idx'); const list=loadContacts(); const removed=list.splice(i,1)[0]; saveContacts(list); renderContacts(); log('Removed contact: '+(removed.label||removed.phone)); } });
+
+    document.getElementById('clearAll').addEventListener('click', function(){ if(confirm('Clear all saved contacts?')){ saveContacts([]); renderContacts(); log('All contacts cleared'); } });
+
+    // BroadcastChannel for volunteers
+    const bc = ('BroadcastChannel' in window) ? new BroadcastChannel('safeher_channel') : null;
+    const volListEl = document.getElementById('volList');
+    let volunteers = JSON.parse(localStorage.getItem('safeher_vols')||'[]');
+    function renderVols(){ volListEl.innerHTML=''; volunteers.forEach(v=>{ const d=document.createElement('div'); d.className='vol'; d.innerHTML = `<div style=\"flex:1\"><strong>${escapeHtml(v.name)}</strong><div class=\"small muted\">${escapeHtml(v.id)}</div></div><div class=\"badge\">${escapeHtml(v.mode||'online')}</div>`; volListEl.appendChild(d); }); }
+    renderVols();
+
+    document.getElementById('registerVol').addEventListener('click', function(){ const name=document.getElementById('volName').value.trim()||('Vol-'+Math.floor(Math.random()*9000)); const id=name+'-'+Math.floor(Math.random()*9000); volunteers.unshift({name,id,mode:'online',ts:Date.now()}); if(volunteers.length>50) volunteers.length=50; localStorage.setItem('safeher_vols', JSON.stringify(volunteers)); renderVols(); if(bc) bc.postMessage({type:'vol-register',payload:{name,id}}); document.getElementById('volName').value=''; log('Registered volunteer: '+name); });
+
+    document.getElementById('simulateNearby').addEventListener('click', function(){ const n='Nearby-'+Math.floor(Math.random()*9000); if(bc) bc.postMessage({type:'vol-register',payload:{name:n,id:n}}); log('Simulated nearby volunteer: '+n); });
+    document.getElementById('clearVols').addEventListener('click', function(){ if(confirm('Clear demo volunteers?')){ volunteers=[]; localStorage.setItem('safeher_vols','[]'); renderVols(); log('Cleared volunteers'); } });
+
+    if(bc){ bc.onmessage = function(ev){ const d=ev.data; if(d && d.type==='period-help'){ notifyLocal('Period Help nearby','A user requested period help: '+(d.payload.message||'')); volunteers = volunteers.filter(v=>v.id!==d.payload.fromId); volunteers.unshift({name:d.payload.fromName,id:d.payload.fromId,mode:'notified'}); if(volunteers.length>50) volunteers.length=50; localStorage.setItem('safeher_vols', JSON.stringify(volunteers)); renderVols(); log('Received period-help broadcast'); }
+      if(d && d.type==='sos-alert'){ notifyLocal('SOS Alert','A nearby SOS was triggered'); log('Received SOS broadcast'); }
+      if(d && d.type==='vol-register'){ volunteers = volunteers.filter(v=>v.id!==d.payload.id); volunteers.unshift({name:d.payload.name,id:d.payload.id,mode:'online'}); if(volunteers.length>50) volunteers.length=50; localStorage.setItem('safeher_vols', JSON.stringify(volunteers)); renderVols(); }
+    } }
+
+    async function notifyLocal(title,body){ try{ if('Notification' in window){ if(Notification.permission!=='granted'){ await Notification.requestPermission(); } if(Notification.permission==='granted'){ new Notification(title,{body:body,tag:'safeher'}); } } if(navigator.vibrate) navigator.vibrate([200,100,200]); }catch(e){ console.warn('Notification fail',e); } }
+
+    // SOS behavior: call first contact, prepare sms to all, broadcast sos
+    document.getElementById('sos').addEventListener('click', async function(){ const list=loadContacts(); if(!list || list.length===0){ alert('Please add emergency contacts first (Setup Emergency Contacts)'); return; }
+      const now=new Date().toLocaleString(); const coords = await tryGetLocation(); const body = `EMERGENCY SOS via SAFE'HER'
+Time: ${now}
+Location: ${coords||'Unavailable'}
+Please call immediately.`;
+      // show modal
+      log('Preparing SOS — calling first contact: '+list[0].phone);
+      // open tel to call first contact (mobile browsers will prompt call)
+      setTimeout(()=>{ window.location.href = 'tel:'+encodeURIComponent(list[0].phone); },200);
+      // prepare sms composer for all contacts (some platforms accept comma-separated phones)
+      try{ const phones = list.map(c=>c.phone).join(','); const smsUri = 'sms:'+encodeURIComponent(phones)+'?&body='+encodeURIComponent(body); setTimeout(()=>{ window.location.href = smsUri; },1200); }catch(e){ console.warn('SMS prep failed',e); }
+      // broadcast demo
+      if(bc) bc.postMessage({type:'sos-alert',payload:{time:Date.now(),from:navigator.userAgent}});
+    });
+
+    // Period help: prompt for name, broadcast to volunteers, prepare sms
+    document.getElementById('periodHelp').addEventListener('click', async function(){ const name = prompt('Enter your name to show to volunteers') || 'Anonymous'; const now=new Date().toLocaleString(); const coords = await tryGetLocation(); const message = `${name} needs period supplies/help — Time: ${now} — Location: ${coords||'Unavailable'}`;
+      log('Broadcasting Period Help — '+message);
+      if(bc) bc.postMessage({type:'period-help',payload:{fromName:name,fromId:name+'-'+Math.floor(Math.random()*9000),'message':message}});
+      const list=loadContacts(); if(list && list.length>0){ const phones = list.map(c=>c.phone).join(','); const smsUri = 'sms:'+encodeURIComponent(phones)+'?&body='+encodeURIComponent('I need period help: '+message); setTimeout(()=>{ window.location.href = smsUri; },800); }
+    });
+
+    // notify volunteers button
+    document.getElementById('notifyVols').addEventListener('click', function(){ if(bc){ bc.postMessage({type:'period-help',payload:{fromName:'Demo',fromId:'demo-'+Math.random().toString(36).slice(2,8),message:'Demo request — please respond'}}); log('Broadcasted demo notification to volunteers'); } else alert('BroadcastChannel not supported in this browser (demo limited)'); });
+
+    document.getElementById('joinVols').addEventListener('click', function(){ const n = prompt('Volunteer name to show (demo)') || ('Vol-'+Math.floor(Math.random()*9000)); const id = n+'-'+Math.floor(Math.random()*9000); volunteers.unshift({name:n,id,mode:'online'}); if(volunteers.length>50) volunteers.length=50; localStorage.setItem('safeher_vols', JSON.stringify(volunteers)); renderVols(); if(bc) bc.postMessage({type:'vol-register',payload:{name:n,id}}); log('Joined volunteers as '+n); });
+
+    // share & print
+    document.getElementById('shareDemo').addEventListener('click', async function(){ const url = location.href; const shareData = {title:"SAFE'HER' — Team LEOARK",text:'Open SAFE\'HER\' demo (SOS + Period Help)',url}; try{ if(navigator.share){ await navigator.share(shareData); log('Shared via Web Share'); } else { await navigator.clipboard.writeText(url); alert('Link copied: '+url); log('Link copied'); } }catch(e){ console.warn(e); alert('Sharing failed — link copied'); await navigator.clipboard.writeText(url);} });
+    document.getElementById('print').addEventListener('click', function(){ window.print(); log('Print opened'); });
+
+    document.getElementById('getLoc').addEventListener('click', async function(){ const coords = await tryGetLocation(); if(coords) { window.open(coords,'_blank'); log('Location opened: '+coords); } else { alert('Location unavailable — allow location access'); } });
+
+    document.getElementById('closeModal').addEventListener('click', function(){ document.getElementById('modal').style.display='none'; document.getElementById('modal').setAttribute('aria-hidden','true'); });
+
+    // helper: try geolocation
+    async function tryGetLocation(){ return new Promise(resolve=>{ if(!navigator.geolocation){ resolve(null); return; } navigator.geolocation.getCurrentPosition(pos=>{ resolve('https://maps.google.com/?q='+pos.coords.latitude+','+pos.coords.longitude); }, err=>{ resolve(null); }, {timeout:5000}); }); }
+
+    // hotkeys
+    document.addEventListener('keydown', function(e){ if(e.key==='P' || e.key==='p') document.getElementById('periodHelp').click(); if(e.key==='S' || e.key==='s') document.getElementById('sos').click(); });
+
+    // polite notification prompt when registering as volunteer
+    document.getElementById('registerVol').addEventListener('click', async function(){ if('Notification' in window && Notification.permission==='default'){ try{ await Notification.requestPermission(); }catch(e){} } });
+
+  })();
+  </script>
+</body>
+</html>
